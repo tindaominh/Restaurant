@@ -77,7 +77,7 @@
                 <div class="collapse navbar-collapse mr-0" id="navbarTogglerDemo01">
                     <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{URL::to('/trang-chu')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL::to('/all-menu')}}">Menu</a>

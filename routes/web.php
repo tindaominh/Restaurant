@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
+Route::get('/trang-chu','Controller@trang_chu');
+
+//menu
+Route::get('/all-menu','MenuController@all_menu');
+
+//login
+Route::get('/login','LoginController@login');
+Route::post('/check-login','LoginController@check_login');
+
+
