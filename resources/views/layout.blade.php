@@ -83,7 +83,7 @@
                         <a class="nav-link" href="{{URL::to('/all-menu')}}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Order</a>
+                        <a class="nav-link" href="{{ route('order') }}">Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL::to('/login')}}">Login</a>
@@ -97,6 +97,8 @@
         <div class="container">
             @yield('content')
         </div>
+
+
 
         <div class="footer">
 		<div class="footer-bottom">
