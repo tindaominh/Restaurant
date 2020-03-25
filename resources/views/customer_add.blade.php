@@ -16,6 +16,7 @@
     {{session('alert')}}
 </div>
 @endif
+<h3>ADD CUSTOMER</h3>
 <form method="POST" action="" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
