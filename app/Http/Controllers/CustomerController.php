@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -22,12 +21,15 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $add_customer = new Customer;
-        $add_customer->so_ban = $request ->so_ban;
-        $add_customer->vi_tri = $request->vi_tri;
-        $add_customer->trang_thai = $request->trang_thai;
-        $add_customer->tong_tien= $request->tong_tien;
-        $n = $add_customer->save();
+        $request->validate([
+            'so_ban'=>'required'
+        ]);
+        $data = array();
+        $data['so_ban'] = $request ->so_ban;
+        $data['vi_tri'] = $request->vi_tri;
+        $data['trang_thai'] = $request->trang_thai;
+        $data['tong_tien']= $request->tong_tien;
+        $n = DB::table('customer')->insert($data);
         if ($n > 0)
             return redirect()->back()->with('alert', 'Thêm thành công');
         else
@@ -42,7 +44,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -53,19 +55,31 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dsCustomer= DB::table('customer')->where('id',$id)->first();
+        return view('customer_edit',['dsCustomer'=>$dsCustomer]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'so_ban'=>'required',
+            'trang_thai'=>'required'
+        ]);
+        $data = array();
+        $data['so_ban'] = $request->so_ban;
+        $data['vi_tri'] = $request->vi_tri;
+        $data['trang_thai'] = $request->trang_thai;
+        $data['tong_tien'] = $request->tong_tien;
+        $n=DB::table('customer')->where('id',$id)->update($data);
+        if($n>0)
+        {
+            return Redirect()->back()->with('alert','Cap nhat thanh cong');
+        }
+        else
+        {
+            return Redirect()->back()->with('alert', 'Cap nhat khong thanh cong');
+        }
     }
 
     /**
@@ -76,8 +90,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $dsCustomer = Customer::find($id);
-        $dsCustomer->delete();
+        DB::table('customer')->where('id',$id)->delete();
         return redirect()->back()->with('alert','Delete thanh cong');
     }
 }

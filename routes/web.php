@@ -28,12 +28,21 @@ Route::group(['prefix' => '/'], function () {
     Route::get('order', 'OrderController@index')->name('order');
     Route::get('order/add', 'OrderController@create')->name('order_add');
     Route::post('order', 'OrderController@store');
-    Route::get('customer', 'CustomerController@index')->name('customer');
-    Route::get('customer/add', 'CustomerController@create')->name('customer_add');
-    Route::post('customer/add', 'CustomerController@store');
+    Route::get('order/view/{id}','OrderController@show')->name('order_view');
 
     route::get('order/edit/{id}','OrderController@edit')->name('order_edit');
     route::put('order/edit/{id}', 'OrderController@update');
+    Route::get('order/delete/{id}', 'OrderController@destroy');
+
+    //
+    Route::post('/order/add','OrderController@add_order');
+
+    Route::get('customer', 'CustomerController@index')->name('customer');
+    Route::get('customer/add', 'CustomerController@create')->name('customer_add');
+    Route::post('customer/add', 'CustomerController@store');
+    route::get('customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
+    route::put('customer/edit/{id}', 'CustomerController@update');
+    Route::get('customer/delete/{id}', 'CustomerController@destroy');
 
     Route::get('/trang-chu', 'Controller@trang_chu');
     //login

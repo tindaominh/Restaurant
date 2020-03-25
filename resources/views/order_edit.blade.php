@@ -15,6 +15,7 @@
     {{session('alert')}}
 </div>
 @endif
+<h3> EDIT ORDER</h3>
 <form action="" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
@@ -33,7 +34,7 @@
 
     <div class="form-group">
         <label for="exampleFormControlTextarea1">ghi chu</label>
-        <textarea class="form-control select2" name="ghi_chu" rows="3" value="{{$dsOrder->ghi_chu}}"></textarea>
+        <textarea class="form-control select2" name="ghi_chu" rows="3">{{$dsOrder->ghi_chu}}</textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">tong tien</label>

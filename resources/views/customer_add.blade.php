@@ -16,7 +16,8 @@
     {{session('alert')}}
 </div>
 @endif
-<h3>ADD CUSTOMER</h3>
+
+<h3> Add Customer</h3>
 <form method="POST" action="" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
@@ -28,13 +29,13 @@
         <input type="text" class="form-control" name="vi_tri" placeholder="Nhap vi tri">
     </div>
     <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" name="trang_thai" value="0">
+        <input type="checkbox" class="form-check-input" name="trang_thai" value="1">
         <label class="form-check-label" for="exampleCheck1" >trang thai</label>
     </div>
 
     <div class="form-group">
         <label for="exampleFormControlTextarea1">ghi chu</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" name="ghi_chu" rows="3" placeholder="nhap ghi chu"></textarea>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">tong tien</label>

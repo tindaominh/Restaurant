@@ -104,8 +104,6 @@
             @yield('content')
         </div>
 
-
-
         <div class="footer bg-dark">
             <div class="footer-bottom pt-2">
                 <div class="container">

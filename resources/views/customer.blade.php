@@ -1,6 +1,20 @@
 @extends('layout')
 @section('content')
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@if(session('alert'))
+<div class="alert alert-success">
+    {{session('alert')}}
+</div>
+@endif
 <table class="table">
     <thead>
         <tr>
@@ -21,15 +35,16 @@
             <td>{{$dsCustomer->tong_tien}}</td>
             <td>
                 <form method="POST" enctype="multipart/form-data">
-                    <a href="{{url('order/view', $dsCustomer->id)}}" class="btn btn-info">View</a>
-                    <a href="{{ url('', $dsCustomer->id) }}" class="btn btn-success">Edit</a>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    @csrf
+                    <a href="{{url('order/view',$dsCustomer->id)}}" class="btn btn-info">View</a>
+                    <a href="{{url('customer/edit',$dsCustomer->id)}}" class="btn btn-success">Edit</a>
+                    <a href="{{url('customer/delete',$dsCustomer->id)}}" class="btn btn-danger">Delete</a>
                 </form>
             </td>
         </tr>
     </tbody>
     @endforeach
 </table>
-<a href="{{route('order')}}" class="btn btn-primary">Add New</a>
+<a href="{{route('customer_add')}}" class="btn btn-primary">Add New</a>
 
 @endsection

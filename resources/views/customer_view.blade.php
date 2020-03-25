@@ -25,7 +25,6 @@
                     @csrf
                     <a href="" class="btn btn-info">View</a>
                     <a href="{{ url('', $dsCustomer->id) }}" class="btn btn-success">Edit</a>
-                    <a href="{{ url('', $dsCustomer->id) }}" class="btn btn-success">Edit</a>
                     <a href="" class="btn btn-danger">Delete</a>
                 </form>
             </td>
