@@ -83,7 +83,7 @@
                         <a class="nav-link" href="{{URL::to('/all-menu')}}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('order') }}">Order</a>
+                        <a class="nav-link" href="{{ route('customer') }}">Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{URL::to('/login')}}">Login</a>

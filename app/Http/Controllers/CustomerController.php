@@ -10,7 +10,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customer');   
+        $dsCustomer= DB::table('customer')->get();
+        return view('customer',['dsCustomer' =>$dsCustomer]);   
     }
 
     public function create()

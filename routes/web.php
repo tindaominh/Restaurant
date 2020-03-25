@@ -26,11 +26,15 @@ Route::group(['prefix' => '/'], function () {
 
 
     Route::get('order', 'OrderController@index')->name('order');
-    Route::get('order/add', 'OrderController@create')->name('add_order');
-    Route::post('order/add', 'OrderController@store');
+    Route::get('order/add', 'OrderController@create')->name('order_add');
+    Route::post('order', 'OrderController@store');
     Route::get('customer', 'CustomerController@index')->name('customer');
-    Route::get('/customer/add', 'CustomerController@create')->name('customer_add');
+    Route::get('customer/add', 'CustomerController@create')->name('customer_add');
     Route::post('customer/add', 'CustomerController@store');
+
+    route::get('order/edit/{id}','OrderController@edit')->name('order_edit');
+    route::put('order/edit/{id}', 'OrderController@update');
+
     Route::get('/trang-chu', 'Controller@trang_chu');
     //login
     Route::get('/login', 'LoginController@login');

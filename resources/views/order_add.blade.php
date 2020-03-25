@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-@if ($errors->any())
+@if($errors->any())
 <div class="alert alert-danger">
     <ul>
         @foreach($errors->all() as $error)
@@ -19,21 +19,16 @@
     @csrf
     <div class="form-group">
         <label for="exampleFormControlInput1">ma khach hang</label>
-        <input type="text" class="form-control" name="customer_id" placeholder="nhap ma khach hang">
+        <input type="text" class="form-control select2" name="customer_id" placeholder="nhap ma khach hang" value="">
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">ma menu</label>
-        <input type="text" class="form-control" name="menu_id" placeholder="nhap ma menu">
+        <input type="text" class="form-control select2" name="menu_id" placeholder="nhap ma menu" value="{{ old('menu_id') }}">
     </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">so luong</label>
-        <input type="text" class="form-control" name="so_luong" placeholder="nhap so luong">
-    </div>
-
     <div class="form-group">
         <label for="exampleFormControlTextarea1">ghi chu</label>
-        <textarea class="form-control" name="ghi_chu" rows="3"></textarea>
+        <textarea class="form-control select2" name="ghi_chu" rows="3"></textarea>
     </div>
-    <a class="btn btn-success" href="">Order</a>
+    <button type="submit" class="btn btn-success" href="">Order</button>
 </form>
 @endsection
