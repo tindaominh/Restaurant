@@ -13,6 +13,6 @@ class Controller extends BaseController
 
     public function trang_chu()
     {
-        return view('layout');
+        return view('home1');
     }
 }

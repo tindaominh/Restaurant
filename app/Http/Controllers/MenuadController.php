@@ -67,19 +67,35 @@ class MenuadController extends Controller
 
     public function edit_menu($menu_id)
     {
-
+        $check_key = Session::get('admin_key');
+        if($check_key == false)
+        {
+            Session::put('message','Bạn không có quyền truy cập vào.');
+            return view('admin_layout');
+        }else
+        {
             $select_menu = Db::table('tbl_menu')->where('menu_id',$menu_id)->get();
             $manage = view('admin.edit_menu')->with('select_menu',$select_menu);
             Session::put('anhien','true');
             return view('admin_layout')->with('admin.edit_menu',$manage);
+        }
+           
      
     }
 
     public function delete_menu($menu_id)
     {   
-        DB::table('tbl_menu')->where('menu_id',$menu_id)->delete();
-        Session::put('message','Xóa menu thành công!');
-        return Redirect::to('/admin-all-menu');
+        $check_key = Session::get('admin_key');
+        if($check_key == false)
+        {
+            Session::put('message','Bạn không có quyền truy cập vào.');
+            return view('admin_layout');
+        }else
+        {
+            DB::table('tbl_menu')->where('menu_id',$menu_id)->delete();
+            Session::put('message','Xóa menu thành công!');
+            return Redirect::to('/admin-all-menu');
+        }
     }
     public function edit_menu_select(request $request,$menu_id)
     {
