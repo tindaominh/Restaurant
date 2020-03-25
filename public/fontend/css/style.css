@@ -1,0 +1,31 @@
+.main_menu .nav1 li a:hover:before {
+    width: 25px;
+}
+
+.main_menu .nav1 li a {
+    font-size: 110%;
+}
+
+
+/* .main_menu .nav1 */
+
+.main_menu .nav1 li {
+    display: inline-block;
+}
+
+.appTitle {
+    font-size: 150%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.collapse {
+    margin-left: 50%;
+}
+
+
+/* Home */
+
+.home {
+    width: 100%;
+}

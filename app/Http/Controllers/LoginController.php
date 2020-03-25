@@ -17,7 +17,7 @@ class LoginController extends Controller
         if($check_login)
         {
             // return Redirect::to('/trang-chu');
-            return view('admin_layout');
+            // return view('admin_layout');
         }
         return view('login');
     }
@@ -32,7 +32,9 @@ class LoginController extends Controller
         {
             Session::put('admin_name',$check->admin_name);
             Session::put('admin_id',$check->admin_id);
-            return Redirect::to('login');
+            Session::put('admin_key',$check->admin_key);
+            // return Redirect::to('login');
+            return view('admin_layout');
         }
         else{
             Session::put('message','Tài khoản hoặc mật khẩu không chính xác!');
@@ -44,6 +46,7 @@ class LoginController extends Controller
     {
         Session::put('admin_name',null);
         Session::put('admin_id',null);
+        Session::put('admin_key',null);
         return Redirect::to('/login');
     }
 }

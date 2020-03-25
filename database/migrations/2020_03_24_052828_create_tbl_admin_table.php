@@ -18,6 +18,7 @@ class CreateTblAdminTable extends Migration
             $table->string('admin_user');
             $table->string('admin_pass');
             $table->string('admin_name');
+            $table->boolean('admin_key');
             $table->timestamps();
         });
     }

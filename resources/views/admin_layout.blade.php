@@ -142,7 +142,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
+	
 	<section class="wrapper">
+	<?php
+		$message = Session::get('message');
+		if($message)
+		{
+			echo '<div class="alert alert-danger" width="80%" style="text-align: center;">'.$message.'</div>';
+			Session::put('message',null);
+		}
+	?>
         @yield('admin_content')
     </section>
     <div class="footer">

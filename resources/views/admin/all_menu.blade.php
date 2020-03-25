@@ -35,6 +35,11 @@
             <td>{{($cate_pro->menu_name)}}</td>
             <td><img src="public/fontend/images/{{($cate_pro->menu_image)}}" width="100px"></td>
             <td>{{($cate_pro->menu_price)}}</td>
+            <?php
+              $check = Session::get('anhien');
+              if($check)
+              {
+            ?>
             <td>
               <a href="{{URL::to('/edit-menu/'.$cate_pro->menu_id)}}" class="active" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -43,6 +48,10 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
+            <?php
+              }
+            ?>
+
           </tr>
             @endforeach
         </tbody>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Session;
 @extends('layout')
 @section('content')
 
-<div class="pt-3" style="text-align: center;">
+<div class="pt-5" style="text-align: center;">
     <h3>Login</h3>
 </div>
 <div class="login p-5">
