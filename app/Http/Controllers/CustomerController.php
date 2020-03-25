@@ -76,6 +76,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dsCustomer = Customer::find($id);
+        $dsCustomer->delete();
+        return redirect()->back()->with('alert','Delete thanh cong');
     }
 }
