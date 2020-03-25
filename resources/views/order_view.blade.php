@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Session;
 ?>
 
@@ -37,7 +38,7 @@ use Illuminate\Support\Facades\Session;
                 <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <a href="{{url('order/edit',$ds_Order->id)}}" class="btn btn-success">Edit</a>
-                    <a href="{{url('order/delete',$ds_Order->id)}}" class="btn btn-danger">Delete</a>
+                    <!-- <a href="{{url('order/delete',$ds_Order->id)}}" class="btn btn-danger">Delete</a> -->
                 </form>
             </td>
         </tr>
@@ -47,5 +48,5 @@ use Illuminate\Support\Facades\Session;
 
 </table>
 <a href="{{route('order_add')}}" class="btn btn-primary">Add New</a>
-
+<a href="{{url('order/payment',$dsCustomer->id)}}" class="btn btn-primary" >Payment</a>
 @endsection

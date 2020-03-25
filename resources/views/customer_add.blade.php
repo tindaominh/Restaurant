@@ -1,7 +1,12 @@
+<?php
+
+use Illuminate\Support\Facades\Session;
+?>
 @extends('layout')
 @section('content')
 
-@if ($errors->any())
+
+@if($errors->any())
 <div class="alert alert-danger">
     <ul>
         @foreach($errors->all() as $error)
@@ -11,9 +16,12 @@
 </div>
 @endif
 
-@if(session('alert'))
-<div class="alert alert-success">
-    {{session('alert')}}
+@if(session('message'))
+<div class="alert alert-danger">
+    {{session('message')}}
+    <?php
+        Session::put('message',null);
+    ?>
 </div>
 @endif
 
@@ -30,7 +38,7 @@
     </div>
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" name="trang_thai" value="1">
-        <label class="form-check-label" for="exampleCheck1" >trang thai</label>
+        <label class="form-check-label" for="exampleCheck1">trang thai</label>
     </div>
 
     <div class="form-group">

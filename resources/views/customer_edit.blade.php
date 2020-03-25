@@ -29,7 +29,7 @@
         <input type="text" class="form-control" name="vi_tri" value="{{ $dsCustomer->vi_tri }}">
     </div>
     <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" name="trang_thai" value="1">
+        <input type="number" class="form-check-input" name="trang_thai" value="{{ $dsCustomer->trang_thai }}">
         <label class="form-check-label" for="exampleCheck1">trang thai</label>
     </div>
 

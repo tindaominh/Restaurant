@@ -32,13 +32,13 @@
             <td>{{$dsCustomer->so_ban}}</td>
             <td>{{$dsCustomer->vi_tri}}</td>
             <td>{{$dsCustomer->trang_thai}}</td>
-            <td>{{$dsCustomer->tong_tien}}</td>
+            <td><?php echo number_format($dsCustomer->tong_tien) ?>d</td>
             <td>
                 <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <a href="{{url('order/view',$dsCustomer->id)}}" class="btn btn-info">View</a>
                     <a href="{{url('customer/edit',$dsCustomer->id)}}" class="btn btn-success">Edit</a>
-                    <a href="{{url('customer/delete',$dsCustomer->id)}}" class="btn btn-danger">Delete</a>
+                    <!-- <a href="{{url('customer/delete',$dsCustomer->id)}}" class="btn btn-danger">Delete</a> -->
                 </form>
             </td>
         </tr>
