@@ -28,12 +28,12 @@
         <label for="exampleFormControlInput1">Vi tri</label>
         <input type="text" class="form-control" name="vi_tri" value="{{ $dsCustomer->vi_tri }}">
     </div>
-    <div class="form-group form-check">
-        <input type="number" class="form-check-input" name="trang_thai" value="{{ $dsCustomer->trang_thai }}">
-        <label class="form-check-label" for="exampleCheck1">trang thai</label>
+    <div class="form-group">
+        <input type="number" name="trang_thai" min="0" max="1" value="{{ $dsCustomer->trang_thai }}">
+        <label>trang thai</label>
     </div>
 
-    <div class="form-group">
+    <div class=" form-group">
         <label for="exampleFormControlInput1">tong tien</label>
         <input type="text" class="form-control" name="tong_tien" value="{{ $dsCustomer->tong_tien }}">
     </div>

@@ -4,75 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
-use App\Customer;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
-=======
-use Illuminate\Support\Facades\Session;
->>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
 
 class CustomerController extends Controller
 {
     public function all_customer()
     {
-<<<<<<< HEAD
-        $giohang = DB::table('tbl_giohang')->get();
-        $khachhang = DB::table('tbl_customer')->get();
-        $order = DB::table('tbl_order')->get();
-        if($giohang)
-        {
-            $manager_menu = view('customer')->with('allgiohang',$giohang)->with('khachhang',$khachhang)->with('order',$order);
-            return view('layout')->with('customer',$manager_menu);
-        }else
-        {
-            return view('customer');
-        }
-
-    }
-    public function all_customer2()
-    {
-        $khachhang = DB::table('tbl_customer')->get();
-        $manager_menu = view('customer_all')->with('khachhang',$khachhang);
-        return view('layout')->with('customer_all',$manager_menu);
-    }
-
-    public function add_khachhang()
-    {
-        Session::put('note_kh','co du lieu');
-        return Redirect::to('/customer');
-    }
-
-    public function add_khachhang_new()
-    {
-        return view('customer_add_new');
-    }
-    public function save_khachhang(request $request)
-    {
-        $data = array();
-        $data['customer_soban'] = $request->soban;
-        $data['order_id'] = '0';
-        $data['customer_vitri'] = $request->vitri;
-        $data['customer_note'] = '0';
-        $dskhachhang = DB::table('tbl_customer')->where('customer_soban',$data['customer_soban'])->where('customer_vitri',$data['customer_vitri'])->where('customer_note','0')->first();
-        if($dskhachhang)
-        {
-            Session::put('message','Vị trí đã có người ngồi.');
-            return Redirect::to('/customer');
-        }
-        DB::table('tbl_customer')->insert($data);
-        return Redirect::to('/customer');
-        
-    }
-
-    public function del_giohang($id)
-    {
-        DB::table('tbl_giohang')->where('giohang_id',$id)->delete();
-        return Redirect::to('/customer');
-=======
         $dsCustomer= DB::table('customer')->where('trang_thai','1')->get();
-        return view('customer',['dsCustomer' =>$dsCustomer]);   
->>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
+        $dsOrder=DB::table('order')->get();
+        
+        return view('customer',['dsCustomer' =>$dsCustomer,'dsOrder'=>$dsOrder]);   
     }
 
     public function create()
@@ -80,6 +21,8 @@ class CustomerController extends Controller
         return view('customer_add');
     }
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public function add_giohang($id)
     {
         $select_menu = DB::table('tbl_menu')->where('menu_id',$id)->first();
@@ -135,6 +78,10 @@ class CustomerController extends Controller
     }
 
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     public function store(Request $request)
     {
         $request->validate([
@@ -156,7 +103,8 @@ class CustomerController extends Controller
         else
         {
             DB::table('customer')->insert($data);
-            return redirect()->back()->with('alert', 'Thêm thành công');
+            Session::put('message', 'Thêm thành công');
+            return view('customer_add');
         }
     }
 

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 @if(session('alert'))
 <div class="alert alert-success">
     {{session('alert')}}
+    <?php
+    Session::put('message', null);
+    ?>
 </div>
 @endif
 <h3>Danh sach order</h3>
@@ -23,9 +26,7 @@ use Illuminate\Support\Facades\Session;
             <th scope="col">tong tien</th>
         </tr>
     </thead>
-
-    @foreach($dsOrder as $ds_Order)
-    @if($dsCustomer->id == $ds_Order->customer_id)
+    @foreach($view_order as $ds_Order)
     <tbody>
         <tr>
             <th scope="row">{{$ds_Order->id}}</th>
@@ -43,10 +44,11 @@ use Illuminate\Support\Facades\Session;
             </td>
         </tr>
     </tbody>
-    @endif
     @endforeach
-
 </table>
-<a href="{{route('order_add')}}" class="btn btn-primary">Add New</a>
-<a href="{{url('order/payment',$dsCustomer->id)}}" class="btn btn-primary" >Payment</a>
+@foreach($view_order as $ds_Order)
+<a href="{{url('order/add',$ds_Order->customer_id)}}" class="btn btn-primary">Add New</a>
+<a href="{{url('order/payment',$ds_Order->customer_id)}}" class="btn btn-primary">Payment</a>
+@break
+@endforeach
 @endsection

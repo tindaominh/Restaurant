@@ -48,17 +48,28 @@
 @section('content')
 
 <h3>PAYMENT</h3>
+@foreach($dsCustomer as $dsCustomer)
 <form method="POST" action="" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="exampleFormControlInput1">ma khach hang</label>
-        <label class="form-control" name="customer_id" placeholder="nhap ma khach hang">{{$dsCustomer->id}}</label>
+        <label class="form-control" name="customer_id">{{$dsCustomer->id}}</label>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">tong tien</label>
-        <input type="text" class="form-control" name="tong_tien" placeholder="nhap tong tien" value="">
+        <label class="form-control" name="">{{$dsCustomer->tong_tien}}</label>
     </div>
-    <button type="submit" class="btn btn-success" href="">Order</button>
+    <button type="submit" class="btn btn-success" href="">Back</button>
 </form>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 @endsection
 >>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
+=======
+@endforeach
+@endsection
+>>>>>>> Stashed changes
+=======
+@endforeach
+@endsection
+>>>>>>> Stashed changes

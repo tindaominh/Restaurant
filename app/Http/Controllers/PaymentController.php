@@ -9,7 +9,7 @@ class PaymentController extends Controller
 {
     public function payment($id)
     {
-        $dsCustomer= DB::table('customer')->where('id',$id);
-        return view('payment',['dsOrder'=>$dsOrder]);
+        $dsCustomer= DB::table('customer')->where('id',$id)->get();
+        return view('payment',['dsCustomer'=>$dsCustomer]);
     }
 }

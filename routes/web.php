@@ -26,8 +26,11 @@ Route::group(['prefix' => '/'], function () {
 
 
     Route::get('order', 'OrderController@index')->name('order');
-    Route::get('order/add', 'OrderController@create')->name('order_add');
+    Route::get('order/add/{id}', 'OrderController@order_add');
+    Route::post('order/add/{id}', 'OrderController@add_order');
     Route::post('order', 'OrderController@store');
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     Route::get('order/view/{id}','OrderController@show')->name('order_view');
     // Route::get('customer', 'CustomerController@index');
     Route::get('/customer', 'CustomerController@all_customer');
@@ -49,6 +52,14 @@ Route::group(['prefix' => '/'], function () {
     // End order, customer
 
     Route::get('customer/{customer_id}','CustomerController@add_giohang');
+=======
+    Route::get('order/view/{id}','OrderController@show');
+    Route::post('order/view/{id}', 'OrderController@view_add');
+>>>>>>> Stashed changes
+=======
+    Route::get('order/view/{id}','OrderController@show');
+    Route::post('order/view/{id}', 'OrderController@view_add');
+>>>>>>> Stashed changes
 
     route::get('order/edit/{id}','OrderController@edit')->name('order_edit');
     route::put('order/edit/{id}', 'OrderController@update');
@@ -57,7 +68,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('order/payment/{id}','PaymentController@payment');
 
     //
-    Route::post('/order/add','OrderController@add_order');
+    
 
     // Route::get('customer', 'CustomerController@index')->name('customer');
     Route::get('customer/add', 'CustomerController@create')->name('customer_add');

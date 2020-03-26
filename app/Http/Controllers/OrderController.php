@@ -11,8 +11,10 @@ class OrderController extends Controller
 {
     public function index()
     {
+        $dsCustomer= DB::table('customer')->get();
         $dsOrder= DB::table('order')->get();
-        return view('order',['dsOrder'=> $dsOrder]);
+        return view('order',['dsOrder'=> $dsOrder,'dsCustomer'=>$dsCustomer]);
+<<<<<<< Updated upstream
     }
 
     public function select_order($id)
@@ -65,10 +67,14 @@ class OrderController extends Controller
             return view('layout')->with('payment',$manage);
         }
        
+=======
+>>>>>>> Stashed changes
     }
 
     public function create()
     {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
         return view('order_add');
     }
 
@@ -91,23 +97,21 @@ class OrderController extends Controller
     //     else
     //         return redirect()->back()->with('alert', 'Order không thành công');
     // }
+=======
+=======
+>>>>>>> Stashed changes
+        
+        $dsOrder = DB::table('order')->get();
+        return view('order_add', ['dsOrder' => $dsOrder]);
+    }
+>>>>>>> Stashed changes
 
-    public function add_order(Request $request)
+    public function order_add($id)
     {
-        $request->validate([
-            'customer_id'=>'required'
-        ]);
-        $data=array();
-        $data['customer_id']=$request->customer_id;
-        $data['menu_id']=$request->menu_id;
-        $data['ghi_chu']=$request->ghi_chu;
-        $data['so_luong'] = $request->so_luong;
-        $data['tong_tien'] = $request->tong_tien;
-        $n= DB::table('order')->insert($data);
-        if ($n > 0)
-            return redirect()->back()->with('alert', 'Them order thành công');
-        else
-            return redirect()->back()->with('alert', 'Them order không thành công');
+    
+        $cus_id=DB::table('customer')->where('id',$id)->get();
+        $cus= view('order_add')->with('add_order',$cus_id);
+        return view('layout')->with('order_add',$cus);
        
     }
 
@@ -119,9 +123,27 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $dsCustomer = DB::table('customer')->where('id', $id)->first();
-        $dsOrder = DB::table('order')->get();
-        return view('order_view',['dsCustomer'=>$dsCustomer, 'dsOrder'=>$dsOrder]);
+        $show_id = DB::table('order')->where('customer_id',$id)->get();
+        $or = view('order_view')->with('view_order', $show_id);
+        return view('layout')->with('order_view', $or);
+    }
+
+    public function view_add(Request $request,$id)
+    {
+        $data = array();
+        $data['customer_id'] = $id;
+        $data['menu_id'] = $request->menu_id;
+        $data['ghi_chu'] = $request->ghi_chu;
+        $data['so_luong'] = $request->so_luong;
+        $data['tong_tien'] = $request->tong_tien;
+        $n = DB::table('order')->insert($data);
+        if ($n) {
+            Session::put('message', 'them order thanh cong');
+            return Redirect::to('order/view/'.$id);
+        } else {
+            Session::put('message', 'Them order không thành công');
+            return view('order_add');
+        }
     }
 
     /**
@@ -132,6 +154,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
+        $dsCustomer=DB::table('customer')->get();
         $dsOrder = DB::table('order')->where('id', $id)->first();
         return view('order_edit',['dsOrder'=>$dsOrder]);
     }

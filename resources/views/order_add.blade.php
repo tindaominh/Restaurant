@@ -5,16 +5,20 @@ use Illuminate\Support\Facades\Session;
 @section('content')
 
 @if(session('message'))
-    <div class="alert alert-danger">
-        {{session('message')}}
-    </div>
+<div class="alert alert-danger">
+    {{session('message')}}
+    <?php
+    Session::put('message', null);
+    ?>
+</div>
 @endif
 <h3>ADD ORDER</h3>
-<form method="POST" action="" enctype="multipart/form-data">
+@foreach($add_order as $key=>$cu)
+<form method="POST" action="{{url('order/view',$cu->id)}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="exampleFormControlInput1">ma khach hang</label>
-        <input type="text" class="form-control" name="customer_id" placeholder="nhap ma khach hang" value="">
+        <input type="text" class="form-control" name="customer_id" value="{{($cu->id)}}" disabled>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">ma menu</label>
@@ -34,4 +38,5 @@ use Illuminate\Support\Facades\Session;
     </div>
     <button type="submit" class="btn btn-success" href="">Order</button>
 </form>
+@endforeach
 @endsection

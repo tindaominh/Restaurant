@@ -1,3 +1,6 @@
+<?php
+    use Illuminate\Support\Facades\Session;
+?>
 @extends('layout')
 @section('content')
 
@@ -13,6 +16,9 @@
 @if(session('alert'))
 <div class="alert alert-success">
     {{session('alert')}}
+    <?php
+    Session::put('alert', null)
+    ?>
 </div>
 @endif
 <h3> EDIT ORDER</h3>
@@ -21,7 +27,7 @@
     @csrf
     <div class="form-group">
         <label for="exampleFormControlInput1">ma khach hang</label>
-        <input type="text" class="form-control select2" name="customer_id" placeholder="nhap ma khach hang" value="{{$dsOrder->customer_id}}">
+        <input type="text" class="form-control select2" name="customer_id" placeholder="nhap ma khach hang" value="{{$dsOrder->customer_id}}" disabled>
     </div>
     <div class="form-group">
         <label for="exampleFormControlInput1">ma menu</label>
