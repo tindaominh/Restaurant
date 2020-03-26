@@ -29,3 +29,50 @@
 .home {
     width: 100%;
 }
+
+.card-home {
+    text-align: center;
+    margin: auto;
+}
+
+.card-home a {
+    font-weight: bold;
+    background: orangered;
+}
+
+.title-card {
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+
+/* Menu */
+
+.menuone {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
+}
+
+.menuone h1 {
+    font-weight: bold;
+}
+
+
+/* Customer */
+
+.customerO a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+
+.customerO a:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

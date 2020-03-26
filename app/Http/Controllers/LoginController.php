@@ -17,8 +17,9 @@ class LoginController extends Controller
         if($check_login)
         {
             // return Redirect::to('/trang-chu');
-            // return view('admin_layout');
+            return view('admin_layout');
         }
+        return view('login');
         return view('login');
     }
     public function check_login(request $request)

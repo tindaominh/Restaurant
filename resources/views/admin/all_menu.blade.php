@@ -26,6 +26,7 @@
             <th>Tên menu</th>
             <th>Hình ảnh</th>
             <th>Giá</th>
+            <th>Active</th>
             <th style="width:30px;"></th>
           </tr>
         </thead>
@@ -35,6 +36,7 @@
             <td>{{($cate_pro->menu_name)}}</td>
             <td><img src="public/fontend/images/{{($cate_pro->menu_image)}}" width="100px"></td>
             <td>{{($cate_pro->menu_price)}}</td>
+            <td>{{($cate_pro->menu_active)}}</td>
             <?php
               $check = Session::get('anhien');
               if($check)

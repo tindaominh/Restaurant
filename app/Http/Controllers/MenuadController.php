@@ -46,6 +46,7 @@ class MenuadController extends Controller
         $data = array();
         $data['menu_name'] = $request->menu_name;
         $data['menu_price'] = $request->menu_price;
+        $data['menu_active'] = $request->menu_active;
         $image = $request ->file('menu_image');
         if($image)
         {
@@ -102,6 +103,7 @@ class MenuadController extends Controller
         $data = array();
         $data['menu_name'] = $request->menu_name;
         $data['menu_price'] = $request->menu_price;
+        $data['menu_active']= $request->menu_active;
         $image = $request ->file('menu_image');
         if($image)
         {

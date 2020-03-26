@@ -33,6 +33,10 @@
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
                                    <input type="text" class="form-control" name="menu_price" id="exampleInput" placeholder="Giá sản phẩm">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInput">Ẩn hiện</label>
+                                    <input type="number"min="0" max="1" class="form-control" name="menu_active" placeholder="Ẩn hiện còn sản phẩm">
+                                </div>
                                 <button type="submit" class="btn btn-info">Thêm sản phẩm</button>
                             </form>
                             </div>

@@ -35,6 +35,10 @@
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
                                    <input type="text" class="form-control" name="menu_price" value="{{$menu_value->menu_price}}" id="exampleInput" placeholder="Giá sản phẩm">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Active</label>
+                                   <input type="number" class="form-control" name="menu_active" value="{{$menu_value->menu_active}}" id="exampleInput" placeholder="Giá sản phẩm">
+                                </div>
                                 <button type="submit" class="btn btn-info">Cập nhật phẩm</button>
                             </form>
                             @endforeach

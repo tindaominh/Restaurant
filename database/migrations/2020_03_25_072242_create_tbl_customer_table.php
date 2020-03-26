@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblMenuTable extends Migration
+class CreateTblCustomerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTblMenuTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_menu', function (Blueprint $table) {
-            $table->increments('menu_id');
-            $table->string('menu_name');
-            $table->double('menu_price');
-            $table->string('menu_image');
-            $table->boolean('menu_active');
+        Schema::create('tbl_customer', function (Blueprint $table) {
+            $table->increments('customer_id');
+            $table->integer('order_id');
+            $table->integer('customer_soban');
+            $table->integer('customer_vitri');
+            $table->boolean('customer_note');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateTblMenuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_menu');
+        Schema::dropIfExists('tbl_customer');
     }
 }
