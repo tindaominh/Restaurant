@@ -14,7 +14,6 @@ class OrderController extends Controller
         $dsCustomer= DB::table('customer')->get();
         $dsOrder= DB::table('order')->get();
         return view('order',['dsOrder'=> $dsOrder,'dsCustomer'=>$dsCustomer]);
-<<<<<<< Updated upstream
     }
 
     public function select_order($id)
@@ -67,44 +66,35 @@ class OrderController extends Controller
             return view('layout')->with('payment',$manage);
         }
        
-=======
->>>>>>> Stashed changes
+
     }
 
     public function create()
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         return view('order_add');
     }
 
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'customer_id' =>'required',
-    //         'menu_id' =>'required'
-    //     ]);
-    //     $add_order = new Order;
-    //     $add_order->customer_id = $request->customer_id;
-    //     $add_order->menu_id = $request->menu_id;
-    //     $add_order->so_luong = $request->so_luong;
-    //     $add_order->ghi_chu = $request->ghi_chu;
-    //     $add_order->tong_tien = $request->tong_tien;
-    //     $n = $add_order->save();
-    //     if ($n > 0)
-    //         return redirect()->back()->with('alert', 'Order thành công');
-    //     else
-    //         return redirect()->back()->with('alert', 'Order không thành công');
-    // }
-=======
-=======
->>>>>>> Stashed changes
-        
-        $dsOrder = DB::table('order')->get();
-        return view('order_add', ['dsOrder' => $dsOrder]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'customer_id' =>'required',
+            'menu_id' =>'required'
+        ]);
+        $add_order = new Order;
+        $add_order->customer_id = $request->customer_id;
+        $add_order->menu_id = $request->menu_id;
+        $add_order->so_luong = $request->so_luong;
+        $add_order->ghi_chu = $request->ghi_chu;
+        $add_order->tong_tien = $request->tong_tien;
+        $n = $add_order->save();
+        if ($n > 0)
+            return redirect()->back()->with('alert', 'Order thành công');
+        else
+            return redirect()->back()->with('alert', 'Order không thành công');
     }
->>>>>>> Stashed changes
+
 
     public function order_add($id)
     {

@@ -21,8 +21,6 @@ class CustomerController extends Controller
         return view('customer_add');
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     public function add_giohang($id)
     {
         $select_menu = DB::table('tbl_menu')->where('menu_id',$id)->first();
@@ -77,21 +75,16 @@ class CustomerController extends Controller
        
     }
 
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     public function store(Request $request)
     {
         $request->validate([
             'so_ban'=>'required'
         ]);
-        $data = array();
+        $data =array();
         $data['so_ban'] = $request ->so_ban;
         $data['vi_tri'] = $request->vi_tri;
         $data['trang_thai'] = $request->trang_thai;
-        $vitri= DB::table('customer')->where('so_ban', $data['so_ban'])
+        $vitri = DB::table('customer')->where('so_ban', $data['so_ban'])
         ->where('vi_tri', $data['vi_tri'])
         ->where('trang_thai', $data['trang_thai'])->first();
         $data['tong_tien']= $request->tong_tien;
@@ -119,12 +112,6 @@ class CustomerController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $dsCustomer= DB::table('customer')->where('id',$id)->first();
@@ -133,8 +120,7 @@ class CustomerController extends Controller
 
     
     public function update(Request $request, $id)
-    {
-        
+    { 
         $data = array();
         $data['so_ban'] = $request->so_ban;
         $data['vi_tri'] = $request->vi_tri;
@@ -151,12 +137,7 @@ class CustomerController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         DB::table('customer')->where('id',$id)->delete();
