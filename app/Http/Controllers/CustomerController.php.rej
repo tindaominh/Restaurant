@@ -1,0 +1,16 @@
+diff a/app/Http/Controllers/CustomerController.php b/app/Http/Controllers/CustomerController.php	(rejected hunks)
+@@ -4,12 +4,13 @@
+ 
+ use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\DB;
++use Illuminate\Support\Facades\Session;
+ 
+ class CustomerController extends Controller
+ {
+     public function index()
+     {
+-        $dsCustomer= DB::table('customer')->get();
++        $dsCustomer= DB::table('customer')->where('trang_thai','1')->get();
+         return view('customer',['dsCustomer' =>$dsCustomer]);   
+     }
+ 

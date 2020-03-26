@@ -54,6 +54,8 @@ Route::group(['prefix' => '/'], function () {
     route::put('order/edit/{id}', 'OrderController@update');
     Route::get('order/delete/{id}', 'OrderController@destroy');
 
+    Route::get('order/payment/{id}','PaymentController@payment');
+
     //
     Route::post('/order/add','OrderController@add_order');
 
@@ -63,6 +65,8 @@ Route::group(['prefix' => '/'], function () {
     route::get('customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
     route::put('customer/edit/{id}', 'CustomerController@update');
     Route::get('customer/delete/{id}', 'CustomerController@destroy');
+
+    
 
     Route::get('/trang-chu', 'Controller@trang_chu');
     //login

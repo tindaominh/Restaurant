@@ -89,7 +89,23 @@
       </tr>
       @endforeach
         <tr>
+<<<<<<< HEAD
             <td colspan="5" style="text-align: right"><a href="{{URL::to('/add-khachhang-new')}}" class="btn btn-secondary btn-lg active mr-0" role="button" aria-pressed="true">Thêm mới</a></td>
+=======
+            <th scope="row">{{$dsCustomer->id}}</th>
+            <td>{{$dsCustomer->so_ban}}</td>
+            <td>{{$dsCustomer->vi_tri}}</td>
+            <td>{{$dsCustomer->trang_thai}}</td>
+            <td><?php echo number_format($dsCustomer->tong_tien) ?>d</td>
+            <td>
+                <form method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <a href="{{url('order/view',$dsCustomer->id)}}" class="btn btn-info">View</a>
+                    <a href="{{url('customer/edit',$dsCustomer->id)}}" class="btn btn-success">Edit</a>
+                    <!-- <a href="{{url('customer/delete',$dsCustomer->id)}}" class="btn btn-danger">Delete</a> -->
+                </form>
+            </td>
+>>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
         </tr>
      
     <!-- <tr>

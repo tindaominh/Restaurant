@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+<<<<<<< HEAD
 use App\Customer;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+=======
+use Illuminate\Support\Facades\Session;
+>>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
 
 class CustomerController extends Controller
 {
     public function all_customer()
     {
+<<<<<<< HEAD
         $giohang = DB::table('tbl_giohang')->get();
         $khachhang = DB::table('tbl_customer')->get();
         $order = DB::table('tbl_order')->get();
@@ -64,6 +69,10 @@ class CustomerController extends Controller
     {
         DB::table('tbl_giohang')->where('giohang_id',$id)->delete();
         return Redirect::to('/customer');
+=======
+        $dsCustomer= DB::table('customer')->where('trang_thai','1')->get();
+        return view('customer',['dsCustomer' =>$dsCustomer]);   
+>>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
     }
 
     public function create()
@@ -135,12 +144,20 @@ class CustomerController extends Controller
         $data['so_ban'] = $request ->so_ban;
         $data['vi_tri'] = $request->vi_tri;
         $data['trang_thai'] = $request->trang_thai;
+        $vitri= DB::table('customer')->where('so_ban', $data['so_ban'])
+        ->where('vi_tri', $data['vi_tri'])
+        ->where('trang_thai', $data['trang_thai'])->first();
         $data['tong_tien']= $request->tong_tien;
-        $n = DB::table('customer')->insert($data);
-        if ($n > 0)
-            return redirect()->back()->with('alert', 'Thêm thành công');
+        if ($vitri)
+        {
+            Session::put('message','chon vi tri khac');
+            return view('customer_add');
+        }
         else
-            return redirect()->back()->with('alert', 'Thêm không thành công');
+        {
+            DB::table('customer')->insert($data);
+            return redirect()->back()->with('alert', 'Thêm thành công');
+        }
     }
 
     /**
@@ -169,10 +186,7 @@ class CustomerController extends Controller
     
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'so_ban'=>'required',
-            'trang_thai'=>'required'
-        ]);
+        
         $data = array();
         $data['so_ban'] = $request->so_ban;
         $data['vi_tri'] = $request->vi_tri;
