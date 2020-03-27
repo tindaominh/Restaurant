@@ -41,10 +41,10 @@ Route::group(['prefix' => '/'], function () {
     //
     
 
-    // Route::get('customer', 'CustomerController@index')->name('customer');
-    Route::get('customer/add', 'CustomerController@create')->name('customer_add');
-    Route::post('customer/add', 'CustomerController@store');
-    route::get('customer/edit/{id}', 'CustomerController@edit')->name('customer_edit');
+    Route::get('customer', 'CustomerController@all_customer');
+    Route::get('add-khachhang', 'CustomerController@create');
+    Route::post('add-khachhang', 'CustomerController@store');
+    route::get('customer/edit/{id}', 'CustomerController@edit');
     route::put('customer/edit/{id}', 'CustomerController@update');
     Route::get('customer/delete/{id}', 'CustomerController@destroy');
 

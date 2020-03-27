@@ -4,10 +4,7 @@ use Illuminate\Support\Facades\Session;
 ?>
 @extends('layout')
 @section('content')
-<div class="pt-5 menuone">
-    <h1>Order</h1>
-</div>
-@endif
+
 @if(session('message'))
 <div class="alert alert-success">
     {{session('message')}}
@@ -42,15 +39,12 @@ use Illuminate\Support\Facades\Session;
             </td>
         </tr>
      
-    <!-- <tr>
-        <td colspan="4" style="text-align: right"><a href="{{URL::to('/add-khachhang')}}" class="btn btn-secondary btn-lg active mr-0" role="button" aria-pressed="true">Thêm khách hàng</a></td>
-    </tr> -->
-  </tbody>
-
+    </tbody>
+    @endforeach
 </table>
+<a href="{{URL::to('/add-khachhang')}}" class="btn btn-info btn-lg active mr-0" role="button" aria-pressed="true">
+    Thêm mới
+</a>
   <!-- End add khach hang -->
-
-  
-
 
 @endsection

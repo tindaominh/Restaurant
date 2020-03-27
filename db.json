@@ -1,0 +1,62 @@
+{
+    "tbl_menu": [
+        {
+            "id": "1",
+            "menu_name": "Cơm gà xối mỡ",
+            "menu_price": "50000",
+            "menu_image": "image1.jpg",
+            "menu_active": 1
+        },
+        {
+            "id": "2",
+            "menu_name": "Bánh xèo miền trung",
+            "menu_price": "50000",
+            "menu_image": "image2.jpg",
+            "menu_active": 1
+        },
+        {
+            "id": "3",
+            "menu_name": "Thịt luộc",
+            "menu_price": "30000",
+            "menu_image": "thitluoc.jpg",
+            "menu_active": 1
+        },
+        {
+            "id": "4",
+            "menu_name": "Gà nướng",
+            "menu_price": "150000",
+            "menu_image": "ganuong.png",
+            "menu_active": 1
+        }
+    ],
+    "tbl_customer": [
+        {
+            "customer_id": "1",
+            "order_id": "1",
+            "customer_soban": "1",
+            "customer_vitri": "1",
+            "customer_note": "1"
+        },
+        {
+            "customer_id": "2",
+            "order_id": "2",
+            "customer_soban": "1",
+            "customer_vitri": "1",
+            "customer_note": "1"
+        },
+        {
+            "customer_id": "3",
+            "order_id": "3",
+            "customer_soban": "3",
+            "customer_vitri": "3",
+            "customer_note": "1"
+        },
+        {
+            "customer_id": "4",
+            "order_id": "3",
+            "customer_soban": "4",
+            "customer_vitri": "5",
+            "customer_note": "1"
+        }
+    ]
+}
