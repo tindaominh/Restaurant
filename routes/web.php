@@ -29,38 +29,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('order/add/{id}', 'OrderController@order_add');
     Route::post('order/add/{id}', 'OrderController@add_order');
     Route::post('order', 'OrderController@store');
-
-    Route::get('order/view/{id}','OrderController@show')->name('order_view');
-    // Route::get('customer', 'CustomerController@index');
-    Route::get('/customer', 'CustomerController@all_customer');
-    Route::get('customer/add', 'CustomerController@create')->name('customer_add');
-    Route::post('customer/add', 'CustomerController@store');
-
-    //Order, Customer
-    Route::get('/add-khachhang','CustomerController@add_khachhang');
-    Route::get('/del-giohang/{id}','CustomerController@del_giohang');
-    Route::get('/add-khachhang-new','CustomerController@add_khachhang_new');
-    route::post('/save-khachhang','CustomerController@save_khachhang');
-    Route::get('/add-cart/{id}','CustomerController@add_cart');
-    Route::get('/all-customer','CustomerController@all_customer2');
-    Route::get('/payment/{id}','OrderController@payment');
-
-    // List Order
-    Route::get('/select-order/{id}','OrderController@select_order');
-
-    // End order, customer
-
-    Route::get('customer/{customer_id}','CustomerController@add_giohang');
-
     Route::get('order/view/{id}','OrderController@show');
     Route::post('order/view/{id}', 'OrderController@view_add');
-
-    Route::get('order/view/{id}','OrderController@show');
-    Route::post('order/view/{id}', 'OrderController@view_add');
-
-    Route::get('order/view/{id}','OrderController@show');
-    Route::post('order/view/{id}', 'OrderController@view_add');
-
 
     route::get('order/edit/{id}','OrderController@edit')->name('order_edit');
     route::put('order/edit/{id}', 'OrderController@update');

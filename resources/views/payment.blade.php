@@ -61,20 +61,4 @@
     </div>
     <button type="submit" class="btn btn-success" href="">Back</button>
 </form>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-@endsection
->>>>>>> b52558ea69424c1ec142063b2cb6002d89b3f976
-=======
-@endforeach
-@endsection
->>>>>>> Stashed changes
-=======
-@endforeach
-@endsection
->>>>>>> Stashed changes
-=======
-@endforeach
-@endsection
->>>>>>> Stashed changes
+
