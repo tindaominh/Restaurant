@@ -4,8 +4,8 @@
   "description": "RESTAURANT RESTful API Test",
   "main": "webpack.mix.js",
   "apidoc": {
-    "title": "RESTful API RESTAURANT",
-    "url": "restaurant/api/..."
+      "title": "Custom apiDoc browser title",
+      "url": "https://api.github.com/v1"
   },
   "scripts": {
     "json:server": "json-server --watch db.json",
