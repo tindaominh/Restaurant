@@ -4,8 +4,12 @@
   "description": "RESTAURANT RESTful API Test",
   "main": "webpack.mix.js",
   "apidoc": {
-    "title": "Custom apiDoc browser title",
-    "url": "https://api.github.com/v1"
+    "title": "RESTful API RESTAURANT",
+    "url": "restaurant/api/..."
+  },
+  "scripts": {
+    "json:server": "json-server --watch db.json",
+    "json:server:remote": "json-server https://git.prd.newit-dev.com/newitvn-tindm/restaurant/src/branch/master/db"
   },
   "directories": {
     "test": "tests"
@@ -15,10 +19,7 @@
     "tests": "^0.4.2"
   },
   "devDependencies": {},
-  "scripts": {
-    "json:server": "json-server --watch db.json --port 8888",
-    "json:server:remote": "json-server --watch https://git.prd.newit-dev.com/newitvn-tindm/restaurant/db"
-  },
+  
   "repository": {
     "type": "git",
     "url": "https://git.prd.newit-dev.com/newitvn-tindm/restaurant"
