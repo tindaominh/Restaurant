@@ -1,62 +1,81 @@
 {
-    "tbl_menu": [
-        {
-            "id": "1",
-            "menu_name": "Cơm gà xối mỡ",
-            "menu_price": "50000",
-            "menu_image": "image1.jpg",
-            "menu_active": 1
-        },
-        {
-            "id": "2",
-            "menu_name": "Bánh xèo miền trung",
-            "menu_price": "50000",
-            "menu_image": "image2.jpg",
-            "menu_active": 1
-        },
-        {
-            "id": "3",
-            "menu_name": "Thịt luộc",
-            "menu_price": "30000",
-            "menu_image": "thitluoc.jpg",
-            "menu_active": 1
-        },
-        {
-            "id": "4",
-            "menu_name": "Gà nướng",
-            "menu_price": "150000",
-            "menu_image": "ganuong.png",
-            "menu_active": 1
-        }
-    ],
-    "tbl_customer": [
-        {
-            "customer_id": "1",
-            "order_id": "1",
-            "customer_soban": "1",
-            "customer_vitri": "1",
-            "customer_note": "1"
-        },
-        {
-            "customer_id": "2",
-            "order_id": "2",
-            "customer_soban": "1",
-            "customer_vitri": "1",
-            "customer_note": "1"
-        },
-        {
-            "customer_id": "3",
-            "order_id": "3",
-            "customer_soban": "3",
-            "customer_vitri": "3",
-            "customer_note": "1"
-        },
-        {
-            "customer_id": "4",
-            "order_id": "3",
-            "customer_soban": "4",
-            "customer_vitri": "5",
-            "customer_note": "1"
-        }
-    ]
+  "tbl_menu": [
+    {
+      "id": 1,
+      "menu_name": "Gà nướng",
+      "menu_price": 150000,
+      "menu_image": "ganuong.png",
+      "menu_active": 1
+    },
+    {
+      "id": 2,
+      "menu_name": "Thịt luộc",
+      "menu_price": 30000,
+      "menu_image": "thitluoc.jpg",
+      "menu_active": 1
+    },
+    {
+      "id": 3
+    }
+  ],
+  "order": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "menu_id": 1,
+      "so_luong": 2,
+      "ghi_chu": "Chưa ghi chú",
+      "tong_tien": 150000
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "menu_id": 2,
+      "so_luong": 4,
+      "ghi_chu": "Chưa ghi chú",
+      "tong_tien": 150000
+    },
+    {
+      "id": 3,
+      "customer_id": 2,
+      "menu_id": 1,
+      "so_luong": 2,
+      "ghi_chu": "Chưa ghi chú",
+      "tong_tien": 150000
+    },
+    {
+      "id": 4,
+      "customer_id": 1,
+      "menu_id": 2,
+      "so_luong": 5,
+      "ghi_chu": "Chưa ghi chú",
+      "tong_tien": 30000
+    }
+  ],
+  "customer": [
+    {
+      "id": 1,
+      "order_id": 2,
+      "so_ban": 2,
+      "vi_tri": 1,
+      "trang_thai": 0,
+      "tong_tien": 450000
+    },
+    {
+      "id": 2,
+      "order_id": 1,
+      "so_ban": 2,
+      "vi_tri": 4,
+      "trang_thai": 0,
+      "tong_tien": 600000
+    },
+    {
+      "id": 3,
+      "order_id": 2,
+      "so_ban": 5,
+      "vi_tri": 1,
+      "trang_thai": 0,
+      "tong_tien": 0
+    }
+  ]
 }
