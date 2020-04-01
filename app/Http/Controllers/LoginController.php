@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-session_start();
 use Illuminate\Http\Request;
 
 class LoginController extends Controller

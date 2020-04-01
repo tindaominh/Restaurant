@@ -2,47 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use App\customer;
 use Illuminate\Http\Request;
-
+use App\customer;
+/**
+ * @group Customer management
+ *
+ * APIs for managing Customer
+ */
 class APICustomerController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return customer::all();
+        return response()->json(customer::get(), 200);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        return customer::find($id);
+        $customer = customer::find($id);
+        if (is_null($customer)) {
+            return response()->json(["message" => "Record not found!"], 404);
+        }
+        return response()->json($customer, 200);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $customer = customer::create($request->all());
-        return response()->json($customer, 201);
+        return  response()->json($customer, 201);
     }
 
-    public function update(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $customer = $request->all();
-        $customer_old = customer::find($customer["id"]);
-        if (empty($customer_old))
-            return response()->json(array("Ma_loi" => -1, "Noi_dung" => "Menu không tồn tại"), 200);
-        else {
-            $customer_old->update($request->all());
-            return response()->json($customer_old, 200);
+        $customer = customer::find($id);
+        if (is_null($customer)) {
+            return response()->json(["message" => "Record not found!!"], 404);
         }
+        $customer->update($request->all());
+        return  response()->json($customer, 200);
     }
-    public function delete(Request $request)
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id)
     {
-        $customer = $request->all();
-        $customer_old = customer::find($customer["id"]);
-        if (empty($customer_old))
-            return response()->json(array("Ma_loi" => -1, "Noi_dung" => "Menu không tồn tại"), 200);
-        else {
-            $kq = $customer_old->delete();
-            return response()->json($kq, 204);
+        $customer = customer::find($id);
+        if (is_null($customer)) {
+            return response()->json(["message" => "Record not found!!"], 404);
         }
+        $customer->delete();
+        return  response()->json(null, 204);
     }
 }

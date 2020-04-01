@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "RESTAURANT RESTful API Test",
   "main": "webpack.mix.js",
+  "apidoc": {
+    "title": "Custom apiDoc browser title",
+    "url": "https://api.github.com/v1"
+  },
   "directories": {
     "test": "tests"
   },

@@ -14,7 +14,7 @@ class CreateTblMenuTable extends Migration
     public function up()
     {
         Schema::create('tbl_menu', function (Blueprint $table) {
-            $table->increments('menu_id');
+            $table->increments('id');
             $table->string('menu_name');
             $table->double('menu_price');
             $table->string('menu_image');

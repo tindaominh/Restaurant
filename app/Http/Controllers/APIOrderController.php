@@ -2,47 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use App\order;
 use Illuminate\Http\Request;
+use App\order;
 
+/**
+ * @group Order management
+ *
+ * APIs for managing Order
+ */
 class APIOrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return order::all();
+        return response()->json(order::get(), 200);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        return order::find($id);
+        $order = order::find($id);
+        if (is_null($order)) {
+            return response()->json(["message" => "Record not found!"], 404);
+        }
+        return response()->json($order, 200);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $order = order::create($request->all());
-        return response()->json($order, 201);
+        return  response()->json($order, 201);
     }
 
-    public function update(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $order = $request->all();
-        $order_old = order::find($order["id"]);
-        if (empty($order_old))
-            return response()->json(array("Ma_loi" => -1, "Noi_dung" => "Menu không tồn tại"), 200);
-        else {
-            $order_old->update($request->all());
-            return response()->json($order_old, 200);
+        $order = order::find($id);
+        if (is_null($order)) {
+            return response()->json(["message" => "Record not found!!"], 404);
         }
+        $order->update($request->all());
+        return  response()->json($order, 200);
     }
-    public function delete(Request $request)
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id)
     {
-        $order = $request->all();
-        $order_old = order::find($order["id"]);
-        if (empty($order_old))
-            return response()->json(array("Ma_loi" => -1, "Noi_dung" => "Menu không tồn tại"), 200);
-        else {
-            $kq = $order_old->delete();
-            return response()->json($kq, 204);
+        $order = order::find($id);
+        if (is_null($order)) {
+            return response()->json(["message" => "Record not found!!"], 404);
         }
+        $order->delete();
+        return  response()->json(null, 204);
     }
 }

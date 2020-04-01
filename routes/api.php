@@ -18,20 +18,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('menu', 'APIMenuController@index');
-Route::get('menu/{id}', 'APIMenuController@show');
-Route::post('menu', 'APIMenuController@store');
-Route::put('menu', 'APIMenuController@update');
-Route::delete('menu', 'APIMenuController@delete');
 
-Route::get('order', 'APIOrderController@index');
-Route::get('order/{id}', 'APIOrderController@show');
-Route::post('order', 'APIOrderController@store');
-Route::put('order', 'APIOrderController@update');
-Route::delete('order', 'APIOrderController@delete');
-
-Route::get('customer', 'APICustomerController@index');
-Route::get('customer/{id}', 'APICustomerController@show');
-Route::post('customer', 'APICustomerController@store');
-Route::put('customer', 'APICustomerController@update');
-Route::delete('customer', 'APICustomerController@delete');
+Route::group(['prefix' => '/'], function () {
+    // order
+    Route::get('order', 'APIOrderController@index');
+    Route::get('order/{id}', 'APIOrderController@show');
+    Route::post('order', 'APIOrderController@store');
+    Route::put('order/{id}', 'APIOrderController@update');
+    Route::delete('order/{id}', 'APIOrderController@delete');
+    //customer
+    Route::get('customer', 'APICustomerController@index');
+    Route::get('customer/{id}', 'APICustomerController@show');
+    Route::post('customer', 'APICustomerController@store');
+    Route::put('customer/{id}', 'APICustomerController@update');
+    Route::delete('customer/{id}', 'APICustomerController@delete');
+    //menu
+    Route::get('menu', 'APIMenuController@index');
+    Route::get('menu/{id}', 'APIMenuController@show');
+    Route::post('menu', 'APIMenuController@store');
+    Route::put('menu/{id}', 'APIMenuController@update');
+    Route::delete('menu/{id}', 'APIMenuController@delete');
+});

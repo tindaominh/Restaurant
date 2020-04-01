@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class customer extends Model
 {
-    protected $table = 'tbl_customer';
+    protected $table = 'customer';
     protected $fillable = [
-        'customer_id',
+        'id',
         'order_id',
-        'customer_soban',
-        'customer_vitri',
-        'customer_note'
+        'so_ban',
+        'vi_tri',
+        'trang_thai',
+        'tong_tien'
     ];
 }

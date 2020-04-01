@@ -18,7 +18,7 @@ class CreateTblPaymentTable extends Migration
             $table->integer('customer_id');
             $table->integer('customer_soban');
             $table->integer('customer_vitri');
-            // $table->integer('menu_id');
+            $table->integer('menu_id');
             // $table->string('menu_name');
             // $table->integer('menu_soluong');
             $table->string('payment_total');

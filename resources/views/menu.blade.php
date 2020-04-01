@@ -10,7 +10,7 @@
       <img src="public/fontend/images/{{$value_menu->menu_image}}" class="card-img-top" alt="..." width="100px" height="300px">
       <div class="card-body">
         <h5 class="card-title title-card">{{$value_menu->menu_name}}</h5>
-        <a href="{{URL::to('/customer/'.$value_menu->menu_id)}}" class="btn btn-primary ">Order</a>
+        <a href="{{URL::to('/order/add/'.$value_menu->id)}}" class="btn btn-primary ">Order</a>
       </div>
     </div>
   </div>

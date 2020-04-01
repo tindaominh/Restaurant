@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
     use Illuminate\Support\Facades\Session;
 ?>
@@ -19,7 +19,7 @@
 <table class="table table-bordered customerO">
   <thead class="thead-dark">
     <tr>
-        <th scope="col">Mã thanh toán</th>
+      <th scope="col">Mã thanh toán</th>
       <th scope="col">Mã kh</th>
       <th scope="col">Số bàn</th>
       <th scope="col">Vị trí</th>
@@ -30,7 +30,7 @@
   <tbody>
     @foreach($payment as $key=>$value_order)
       <tr>
-          <td>{{($value_order->payment_id)}}</td>
+        <td>{{($value_order->payment_id)}}</td>
         <td>{{($value_order->customer_id)}}</td>
         <td>{{($value_order->customer_soban)}}</td>
         <td>{{($value_order->customer_vitri)}}</td>
@@ -42,23 +42,5 @@
 
 </table>
   <!-- End list all -->
-  @endsection
-=======
-@extends('layout')
-@section('content')
-
-<h3>PAYMENT</h3>
-@foreach($dsCustomer as $dsCustomer)
-<form method="POST" action="" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label for="exampleFormControlInput1">ma khach hang</label>
-        <label class="form-control" name="customer_id">{{$dsCustomer->id}}</label>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">tong tien</label>
-        <label class="form-control" name="">{{$dsCustomer->tong_tien}}</label>
-    </div>
-    <button type="submit" class="btn btn-success" href="">Back</button>
-</form>
+ @endsection
 

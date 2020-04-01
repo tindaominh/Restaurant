@@ -1,54 +1,32 @@
-<?php
-
-use Illuminate\Support\Facades\Session;
-?>
 @extends('layout')
 @section('content')
 
-
-@if($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+@include('errors')
+<div class=" mt-5 center">
+    <h3>Thêm khách hàng</h3>
 </div>
-@endif
-
-@if(session('message'))
-<div class="alert alert-danger">
-    {{session('message')}}
-    <?php
-        Session::put('message',null);
-    ?>
+<div class="mb-5">
+    <form action="" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1">Ma order</label>
+            <input type="text" class="form-control" name="order_id" value="2" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Số bàn</label>
+            <input type="text" class="form-control" name="so_ban" aria-describedby="emailHelp" placeholder="Nhập số bàn">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Vị trí</label>
+            <input type="text" class="form-control" name="vi_tri" placeholder="Nhập vị trí">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" name="trang_thai" value="0">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" value="0" name="tong_tien">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
 </div>
-@endif
-
-<h3> Add Customer</h3>
-<form method="POST" action="" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label for="exampleFormControlInput1">so ban</label>
-        <input type="text" class="form-control" name="so_ban" placeholder="Nhap so ban" value="{{ old('so_ban') }}">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Vi tri</label>
-        <input type="text" class="form-control" name="vi_tri" placeholder="Nhap vi tri">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" name="trang_thai" value="1">
-        <label class="form-check-label" for="exampleCheck1">trang thai</label>
-    </div>
-
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">ghi chu</label>
-        <textarea class="form-control" name="ghi_chu" rows="3" placeholder="nhap ghi chu"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">tong tien</label>
-        <input type="text" class="form-control" name="tong_tien" placeholder="">
-    </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
 @endsection

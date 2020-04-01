@@ -1,45 +1,38 @@
 @extends('layout')
 @section('content')
-
-@if($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-@if(session('alert'))
-<div class="alert alert-success">
-    {{session('alert')}}
-</div>
-@endif
-<h3>ODER</h3>
-<form action="" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="form-group">
-        <label for="exampleFormControlInput1">ma khach hang</label>
-        <input type="text" class="form-control select2" name="customer_id" placeholder="nhap ma khach hang">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">ma menu</label>
-        <input type="text" class="form-control select2" name="menu_id" placeholder="nhap ma menu">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">so luong</label>
-        <input type="text" class="form-control select2" name="so_luong" placeholder="nhap so luong">
-    </div>
-
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">ghi chu</label>
-        <textarea class="form-control select2" name="ghi_chu" rows="3"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">tong tien</label>
-        <input type="number" class="form-control select2" name="tong_tien" placeholder="nhap tong tien">
-    </div>
-    <button type="submit" class="btn btn-success" >Order</button>
-</form>
-
+@include('errors')
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã order</th>
+            <th scope="col">Mã khách hàng</th>
+            <th scope="col">Mã menu</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Ghi chú</th>
+            <th scope="col">Giá</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @foreach($order as $getorder)
+    <tbody>
+        <tr>
+            <th scope="row">{{ $getorder->id }}</th>
+            <th scope="row">{{ $getorder->customer_id }}</th>
+            <td scope="row">{{$getorder->menu_id}}</td>
+            <td scope="row">{{$getorder->so_luong}}</td>
+            <td scope="row">{{$getorder->ghi_chu}}</td>
+            <td scope="row">{{number_format($getorder->tong_tien)}} đ</td>
+            <td>
+                <form method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <a href="{{url('payment/'.$getorder->customer_id)}}" class="btn btn-info">Payment</a>
+                    <a href="{{url('order/edit/'.$getorder->id)}}" class="btn btn-success">Edit</a>
+                    <a href="{{url('/order/delete/'.$getorder->id)}}" class="btn btn-danger">Delete</a>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+    @endforeach
+</table>
+<a href="{{asset('/all-menu')}}" class="btn btn-info">Thêm mới</a>
 @endsection

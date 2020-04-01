@@ -2,107 +2,100 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
+use App\order;
+use App\menu;
+use App\payment;
 
 class OrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $dsCustomer= DB::table('customer')->get();
-        $dsOrder= DB::table('order')->get();
-        return view('order',['dsOrder'=> $dsOrder,'dsCustomer'=>$dsCustomer]);
+        $order=DB::table('order')->get();
+        return view('order',['order'=>$order]);
     }
 
-    public function select_order($id)
-    {   
-        $list_order = DB::table('tbl_order')->where('customer_id',$id)
-        ->join('tbl_menu','tbl_menu.menu_id','=','tbl_order.menu_id')->get();
-        $list_order2 = DB::table('tbl_order')->where('customer_id',$id)->first();
-        if($list_order2)
-        {
-            $manage = view('order_list')->with('list_order',$list_order);
-            return view('layout')->with('order_list',$manage);
-        }else
-        {
-            Session::put('message','Chưa có order món nào.');
-            return Redirect::to('/customer');
-        }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id)
+    {
+        $menu = DB::table('tbl_menu')->where('id',$id)->get();
+        return view('order_add', ['menu' => $menu]);
     }
+
+    // public function payment($id)
+    // {
+    //     $giohang = DB::table('order')->where('customer_id', $id)->get();
+    //     $customer = DB::table('customer')->where('id', $id)->first();
+    //     $total = 0;
+    //     foreach ($giohang as $key) {
+    //         $t = $key->so_luong * $key->tong_tien;
+    //         $total += $t ;
+    //     }
+    //     $data['payment_total'] = $total;
+    //     $data['customer_id' ]= $id;
+    //     $data['payment_active'] = 1;
+    //     $payment=DB::table('tbl_payment')->where('customer_id',$id)->first();
+    //     // $select_payment = DB::table('tbl_payment')->where('customer_id', $id)->where('customer_soban', $data->customer_soban)->where('customer_vitri', $data->customer_vitri)->where('payment_active', $data->payment_active)->first();
+    //     DB::table('tbl_payment')->insert($data);
+    //     var_dump($data);
+    //     return view('payment',['giohang'=>$giohang,'customer'=>$customer]);
+    // }
 
     public function payment($id)
     {
-        $giohang = DB::table('tbl_order')->where('customer_id',$id)->get();
-        $getcustomer = DB::table('tbl_customer')->where('customer_id',$id)->first();
-        $total = 0;
-        foreach($giohang as $key)
+        //$customer= DB::table('customer')->get();
+        $customer = DB::table('customer')
+        ->join('order', 'order.id', '=', 'customer.order_id')
+        ->join('tbl_menu', 'tbl_menu.id', '=', 'order.menu_id')->get();
+        $data['customer_id']=$id;
+        foreach($customer as $getcustomer)
         {
-            $x = $key->menu_soluong * $key->menu_price;
-            $total = $total + $x;
+            $data['customer_soban'] = $getcustomer->so_ban;
+            $data['customer_vitri'] = $getcustomer->vi_tri;
+            $data['menu_id'] = $getcustomer->menu_id;
+            $data['payment_total'] = $getcustomer->tong_tien;
+            $data['payment_active'] = 1;
         }
-        $data['payment_total'] = $total;
-        $data['customer_id'] = $id;
-        $data['customer_vitri'] = $getcustomer->customer_vitri;
-        $data['customer_soban'] = $getcustomer->customer_soban;
-        $data['payment_active'] = 1;
-        $ds_payment = DB::table('tbl_payment')->where('customer_id',$id)->get();
-        $select_payment = DB::table('tbl_payment')->where('customer_id',$id)->where('customer_soban',$data['customer_soban'])->where('customer_vitri',$data['customer_vitri'])->where('payment_active',$data['payment_active'])->first();
-        if($select_payment){
-            Session::put('message','Đã có hóa đơn.');
-            $manage = view('payment')->with('payment',$ds_payment);
-            return view('layout')->with('payment',$manage);
-        }
-        elseif($data['payment_total'] == 0)
-        {
-            Session::put('message','Chưa order món nào.');
-            return Redirect::to('/customer');
-
-        }else
-        {
-            Db::table('tbl_payment')->insert($data);  
-            $manage = view('payment')->with('payment',$ds_payment);
-            return view('layout')->with('payment',$manage);
-        }
-       
-
+        DB::table('tbl_payment')->insert($data);
+        $payment=DB::table('tbl_payment')->get();
+        return view('payment1', ['customer' => $customer,'payment' => $payment]);
     }
 
-    public function create()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(OrderRequest $request, $id)
     {
-
-        return view('order_add');
-    }
-
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'customer_id' =>'required',
-            'menu_id' =>'required'
-        ]);
-        $add_order = new Order;
-        $add_order->customer_id = $request->customer_id;
-        $add_order->menu_id = $request->menu_id;
-        $add_order->so_luong = $request->so_luong;
-        $add_order->ghi_chu = $request->ghi_chu;
-        $add_order->tong_tien = $request->tong_tien;
-        $n = $add_order->save();
-        if ($n > 0)
-            return redirect()->back()->with('alert', 'Order thành công');
+        $validated=$request->validated();
+        $data= new order;
+        $data->customer_id = $request->get('customer_id');
+        $data->menu_id = $request->get('menu_id');
+        $data->so_luong = $request->get('so_luong');
+        $data->ghi_chu = $request->get('ghi_chu');
+        $data->tong_tien = $request->get('tong_tien');
+        $n=$data->save();
+        if($n>0)
+        {
+            return redirect('/order')->with('alert','success');
+        }
         else
-            return redirect()->back()->with('alert', 'Order không thành công');
-    }
-
-
-    public function order_add($id)
-    {
-    
-        $cus_id=DB::table('customer')->where('id',$id)->get();
-        $cus= view('order_add')->with('add_order',$cus_id);
-        return view('layout')->with('order_add',$cus);
-       
+        {
+            return back()->with('alert_error', 'fails');
+        }
     }
 
     /**
@@ -113,27 +106,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $show_id = DB::table('order')->where('customer_id',$id)->get();
-        $or = view('order_view')->with('view_order', $show_id);
-        return view('layout')->with('order_view', $or);
-    }
-
-    public function view_add(Request $request,$id)
-    {
-        $data = array();
-        $data['customer_id'] = $id;
-        $data['menu_id'] = $request->menu_id;
-        $data['ghi_chu'] = $request->ghi_chu;
-        $data['so_luong'] = $request->so_luong;
-        $data['tong_tien'] = $request->tong_tien;
-        $n = DB::table('order')->insert($data);
-        if ($n) {
-            Session::put('message', 'them order thanh cong');
-            return Redirect::to('order/view/'.$id);
-        } else {
-            Session::put('message', 'Them order không thành công');
-            return view('order_add');
-        }
+        //
     }
 
     /**
@@ -144,26 +117,34 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $dsCustomer=DB::table('customer')->get();
-        $dsOrder = DB::table('order')->where('id', $id)->first();
-        return view('order_edit',['dsOrder'=>$dsOrder]);
+        $order = DB::table('order')->where('id', $id)->get();
+        return view('order_edit', ['order' => $order]);
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        
-        $data=array();
-        $data['customer_id']=$request->customer_id;
-        $data['menu_id']= $request->menu_id;
-        $data['ghi_chu'] = $request->ghi_chu;
-        $data['so_luong'] = $request->so_luong;
-        $data['tong_tien'] = $request->tong_tien;
-        $n=DB::table('order')->where('id', $id)->update($data);
-        if ($n > 0)
-            return redirect()->back()->with('alert', 'Update thành công');
+        $data= order::find($id);
+        $data->customer_id = $request->get('customer_id');
+        $data->menu_id = $request->get('menu_id');
+        $data->so_luong = $request->get('so_luong');
+        $data->ghi_chu = $request->get('ghi_chu');
+        $data->tong_tien = $request->get('tong_tien');
+        $n=$data->save();
+        if($n>0)
+        {
+            return redirect('/order')->with('alert','success');
+        }
         else
-            return redirect()->back()->with('alert', 'Update không thành công');
+        {
+            return back()->with('alert_error', 'fails');
+        }
     }
 
     /**
@@ -174,7 +155,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('order')->where('id',$id)->delete();
-        return redirect()->back()->with('alert', 'Delete thành công');
+        order::find($id)->delete();
+        return redirect('/order')->with('alert', 'success');
     }
 }

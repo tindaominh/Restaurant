@@ -18,36 +18,31 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['prefix' => '/'], function () {
-    Route::get('/trang-chu', 'Controller@trang_chu');
-
-    //menu
-    Route::get('/all-menu', 'MenuController@all_menu');
-
-
-    Route::get('order', 'OrderController@index')->name('order');
-    Route::get('order/add/{id}', 'OrderController@order_add');
-    Route::post('order/add/{id}', 'OrderController@add_order');
-    Route::post('order', 'OrderController@store');
-    Route::get('order/view/{id}','OrderController@show');
-    Route::post('order/view/{id}', 'OrderController@view_add');
-
-    route::get('order/edit/{id}','OrderController@edit')->name('order_edit');
-    route::put('order/edit/{id}', 'OrderController@update');
-    Route::get('order/delete/{id}', 'OrderController@destroy');
-
-    Route::get('order/payment/{id}','PaymentController@payment');
-
-    //
+    Route::group(['prefix'=>'order/'], function(){
+        Route::get('','OrderController@index');
+        Route::get('add/{id}', 'OrderController@create');
+        Route::post('add/{id}', 'OrderController@store');
+        Route::get('edit/{id}', 'OrderController@edit');
+        Route::put('edit/{id}', 'OrderController@update');
+        Route::get('delete/{id}', 'OrderController@destroy');
+    });
+    Route::group(['prefix' => 'customer/'], function () {
+        Route::get('', 'CustomerController@index');
+        Route::get('view/{id}', 'CustomerController@show');
+        Route::get('add', 'CustomerController@create');
+        Route::post('add', 'CustomerController@store');
+        Route::get('edit/{id}', 'CustomerController@edit');
+        Route::put('edit/{id}', 'CustomerController@update');
+        Route::get('delete/{id}', 'CustomerController@destroy');
+    });
+    Route::group(['prefix' => 'payment/'], function () {
+        Route::get('{id}', 'OrderController@payment');
+       // Route::post('{id}', 'OrderController@payment');
+    });
     
-
-    Route::get('customer', 'CustomerController@all_customer');
-    Route::get('add-khachhang', 'CustomerController@create');
-    Route::post('add-khachhang', 'CustomerController@store');
-    route::get('customer/edit/{id}', 'CustomerController@edit');
-    route::put('customer/edit/{id}', 'CustomerController@update');
-    Route::get('customer/delete/{id}', 'CustomerController@destroy');
-
+  
     
 
     Route::get('/trang-chu', 'Controller@trang_chu');
@@ -59,6 +54,7 @@ Route::group(['prefix' => '/'], function () {
     //admin
 
     //Menu
+    Route::get('/all-menu', 'MenuController@all_menu');
     Route::get('/admin-all-menu', 'MenuadController@admin_all_menu');
     route::get('/admin-add-menu', 'MenuadController@admin_add_menu');
     Route::post('/save-menu', 'MenuadController@save_menu');
