@@ -13,7 +13,7 @@ class CustomerController extends Controller
     /**
      * @apiDefine apiParamCustomer
      *
-     * @apiParam {integer} order_id  id of order.
+     * @apiParam {integer} order_id  <code>id</code> of order.
      * @apiParam {integer} so_ban table number.
      * @apiParam {integer} vi_tri  number of the table.
      * @apiParam {integer} trang_thai  status for customer.
@@ -23,7 +23,7 @@ class CustomerController extends Controller
     /**
      * @apiDefine apiParamCustomer_put
      *
-     * @apiParam {integer} [order_id]  id of order.
+     * @apiParam {integer} [order_id]  <code>id</code> of order.
      * @apiParam {integer} [so_ban] table number.
      * @apiParam {integer} [vi_tri]  number of the table.
      * @apiParam {integer} [trang_thai]  status for customer.
@@ -33,8 +33,8 @@ class CustomerController extends Controller
     /**
      * @apiDefine apiSuccessCustomer
      *
-     * @apiSuccess {integer} id id of customer.
-     * @apiSuccess {integer} order_id  id of order.
+     * @apiSuccess {integer} id <code>id</code> of customer.
+     * @apiSuccess {integer} order_id  <code>id</code> of order.
      * @apiSuccess {integer} so_ban table number.
      * @apiSuccess {integer} vi_tri  number of the table.
      * @apiSuccess {integer} trang_thai  status for customer.
