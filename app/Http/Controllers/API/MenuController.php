@@ -6,29 +6,107 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\menu;
 /**
- * @group Menu management
- *
- * APIs for managing Menu
+ * @apiGroup Menu
  */
 class MenuController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * @apiDefine apiParamMenu
      *
+     * @apiParam {String} menu_name  Name of the menu.
+     * @apiParam {double} menu_price price of the menu.
+     * @apiParam {String} menu_image  image of the menu.
+     * @apiParam {integer} menu_active status of the menu.
+     */
+
+    /**
+     * @apiDefine apiParamMenu_put
+     *
+     * @apiParam {String} [menu_name]  Name of the menu.
+     * @apiParam {double} [menu_price] price of the menu.
+     * @apiParam {String} [menu_image]  image of the menu.
+     * @apiParam {integer} [menu_active] status of the menu.
+     */
+
+    /**
+     * @apiDefine apiSuccessMenu
+     *
+     * @apiSuccess {integer} id <code>id</code> of menu.
+     * @apiSuccess {String} menu_name  Name of the menu.
+     * @apiSuccess {double} menu_price price of the menu.
+     * @apiSuccess {String} menu_image  image of the menu.
+     * @apiSuccess {integer} menu_active  status of the menu.
      * 
-     * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @apiDefine MenuSuccess
+     *
+     *  @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "id": 1,
+     *       "menu_name": "Gà nướng",
+     *        "menu_price": 150000,
+     *        "menu_image": "ganuong.png",
+     *        "menu_active": 1
+     *     }
+     * 
+     */
+
+    /**
+     * @apiDefine MenuNotFoundError
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "Menu Not Found!"
+     *     }
+     */
+
+    /**
+     * @apiDefine MenuNotFoundError_ID
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "Record Not Found!"
+     *     }
+     */
+
+    /**
+     * @api {get} /menu I Get Menu information
+     * @apiName getMenu
+     * @apiGroup Menu
+     * 
+     * @apiUse apiSuccessMenu
+     *
+     * @apiUse MenuSuccess
+     *
+     * @apiUse MenuNotFoundError
      */
     public function index()
     {
-        return response()->json(menu::get(), 200);
+        $menu=menu::get();
+        if (is_null($menu)) {
+            return response()->json(["error" => "Menu not found!"], 404);
+        }
+        return response()->json($menu, 200);
     }
 
     /**
-     * Display the specified resource.
+     * @api {get} /menu/{id} II Get Menu ID information
+     * @apiName getMenuID
+     * @apiGroup Menu
      * 
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiUse apiSuccessMenu
+     *
+     * @apiUse MenuSuccess
+     *
+     * @apiUse MenuNotFoundError_ID
      */
+
     public function show($id)
     {
         $menu = menu::find($id);
@@ -39,11 +117,21 @@ class MenuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @api {post} /menu III Create new Menu information
+     * @apiName postMenu
+     * @apiGroup Menu
      * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @apiUse apiParamMenu
+     * 
+     * @apiUse apiSuccessMenu
+     *
+     * @apiUse MenuSuccess
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 error
+     *     
      */
+
     public function store(Request $request)
     {
         $menu = menu::create($request->all());
@@ -51,13 +139,19 @@ class MenuController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @api {put} /menu/{id} IV Modify Menu information
+     * @apiName putMenu
+     * @apiGroup Menu
      *
+     * @apiUse apiParamMenu_put
      * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiUse apiSuccessMenu
+     *
+     * @apiUse MenuSuccess
+     *
+     * @apiUse MenuNotFoundError_ID
      */
+
     public function update(Request $request, $id)
     {
         $menu = menu::find($id);
@@ -69,11 +163,16 @@ class MenuController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @api {delete} /menu/{id} V Delete Menu information
+     * @apiName deleteMenu
+     * @apiGroup Menu
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 204 No Content
+     *
+     * @apiUse MenuNotFoundError_ID
      */
+
     public function delete(Request $request, $id)
     {
         $menu = menu::find($id);

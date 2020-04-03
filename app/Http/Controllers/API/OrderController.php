@@ -1,23 +1,92 @@
 <?php
-
-
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\order;
-
 /**
- * @group Order management
- *
- * APIs for managing Order
+ * @apiGroup Order
  */
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @apiDefine apiParamOrder
      *
-     * @return \Illuminate\Http\Response
+     * @apiParam {integer} customer_id  <code>id</code> of customer.
+     * @apiParam {integer} menu_id <code>id</code> of menu.
+     * @apiParam {integer} so_luong  number of the menu.
+     * @apiParam {String} ghi_chu  note for order.
+     * @apiParam {double} tong_tien   Total of the menu.
+     */
+
+    /**
+     * @apiDefine apiParamOrder_put
+     *
+     * @apiParam {integer} [customer_id]  <code>id</code> of customer.
+     * @apiParam {integer} [menu_id] <code>id</code> of menu.
+     * @apiParam {integer} [so_luong]  number of the menu.
+     * @apiParam {String} [ghi_chu]  note for order.
+     * @apiParam {double} [tong_tien]   Total of the menu.
+     */
+
+    /**
+     * @apiDefine apiSuccessOrder
+     *
+     * @apiSuccess {integer} id <code>id</code> of order.
+     * @apiSuccess {integer} customer_id  <code>id</code> of customer.
+     * @apiSuccess {integer} menu_id <code>id</code> of menu.
+     * @apiSuccess {integer} so_luong  number of the menu.
+     * @apiSuccess {String} ghi_chu  note for order.
+     * @apiSuccess {double} tong_tien   Total of the menu.
+     * 
+     */
+
+    /**
+     * @apiDefine OrderSuccess
+     *
+     *  @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "id": 1,
+     *       "customer_id": 1,
+     *       "menu_id": 1,
+     *       "so_luong": 2,
+     *       "ghi_chu": "Chưa ghi chú",
+     *       "tong_tien": 150000
+     *     }
+     * 
+     */
+
+    /**
+     * @apiDefine OrderNotFoundError
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "Order Not Found!"
+     *     }
+     */
+
+    /**
+     * @apiDefine OrderNotFoundError_ID
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "Record Not Found!"
+     *     }
+     */
+
+    /**
+     * @api {get} /order I Get Order information
+     * @apiName getOrder
+     * @apiGroup Order
+     * 
+     * @apiUse apiSuccessOrder
+     *
+     * @apiUse OrderSuccess
+     *
+     * @apiUse OrderNotFoundError
      */
     public function index()
     {
@@ -25,10 +94,15 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @api {get} /order/{id} II Get Order ID information
+     * @apiName getOrderID
+     * @apiGroup Order
+     * 
+     * @apiUse apiSuccessOrder
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiUse OrderSuccess
+     *
+     * @apiUse OrderNotFoundError_ID
      */
     public function show($id)
     {
@@ -40,11 +114,19 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @api {post} /order III Create new Order information
+     * @apiName postOrder
+     * @apiGroup Order
      * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @apiUse apiParamOrder
+     * 
+     * @apiUse apiSuccessOrder
+     *
+     * @apiUse OrderSuccess
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 500 error
+     *     
      */
     public function store(Request $request)
     {
@@ -53,12 +135,17 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @api {put} /order/{id} IV Modify Order information
+     * @apiName putOrder
+     * @apiGroup Order
      *
+     *  @apiUse apiParamOrder_put
+     * 
+     * @apiUse apiSuccessOrder
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiUse OrderSuccess
+     *
+     * @apiUse MenuNotFoundError_ID
      */
     public function update(Request $request, $id)
     {
@@ -71,10 +158,14 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @api {delete} /order/{id} V Delete Menu information
+     * @apiName deleteOrder
+     * @apiGroup Order
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 204 No Content
+     *
+     * @apiUse OrderNotFoundError_ID
      */
     public function delete(Request $request, $id)
     {

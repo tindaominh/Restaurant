@@ -20,22 +20,30 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => '/'], function () {
-    // order
-    Route::get('order', 'APIOrderController@index');
-    Route::get('order/{id}', 'APIOrderController@show');
-    Route::post('order', 'APIOrderController@store');
-    Route::put('order/{id}', 'APIOrderController@update');
-    Route::delete('order/{id}', 'APIOrderController@delete');
-    //customer
-    Route::get('customer', 'APICustomerController@index');
-    Route::get('customer/{id}', 'APICustomerController@show');
-    Route::post('customer', 'APICustomerController@store');
-    Route::put('customer/{id}', 'APICustomerController@update');
-    Route::delete('customer/{id}', 'APICustomerController@delete');
-    //menu
-    Route::get('menu', 'APIMenuController@index');
-    Route::get('menu/{id}', 'APIMenuController@show');
-    Route::post('menu', 'APIMenuController@store');
-    Route::put('menu/{id}', 'APIMenuController@update');
-    Route::delete('menu/{id}', 'APIMenuController@delete');
+    Route::group(['namespace'=>'API'], function(){
+        // order
+        Route::get('order', 'OrderController@index');
+        Route::get('order/{id}', 'OrderController@show');
+        Route::post('order', 'OrderController@store');
+        Route::put('order/{id}', 'OrderController@update');
+        Route::delete('order/{id}', 'OrderController@delete');
+        //customer
+        Route::get('customer', 'CustomerController@index');
+        Route::get('customer/{id}', 'CustomerController@show');
+        Route::post('customer', 'CustomerController@store');
+        Route::put('customer/{id}', 'CustomerController@update');
+        Route::delete('customer/{id}', 'CustomerController@delete');
+        //menu
+        Route::get('menu', 'MenuController@index');
+        Route::get('menu/{id}', 'MenuController@show');
+        Route::post('menu', 'MenuController@store');
+        Route::put('menu/{id}', 'MenuController@update');
+        Route::delete('menu/{id}', 'MenuController@delete');
+        //payment
+        Route::get('payment', 'PaymentController@index');
+        Route::get('payment/{id}', 'PaymentController@show');
+        Route::post('payment', 'PaymentController@store');
+        Route::put('payment/{id}', 'PaymentController@update');
+        Route::delete('payment/{id}', 'PaymentController@delete');
+    });
 });

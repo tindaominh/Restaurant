@@ -1,11 +1,11 @@
 {
-  "name": "restaurant",
+  "name": "RESTAURANT",
   "version": "1.0.0",
-  "description": "RESTAURANT RESTful API Test",
+  "description": "RESTAURANT API Document.",
   "main": "webpack.mix.js",
   "apidoc": {
-      "title": "Custom apiDoc browser title",
-      "url": "https://api.github.com/v1"
+    "title": "RESTAURANT API Document",
+    "url": "restaurant/api"
   },
   "scripts": {
     "json:server": "json-server --watch db.json",
@@ -18,8 +18,9 @@
     "json-server": "^0.16.1",
     "tests": "^0.4.2"
   },
-  "devDependencies": {},
-  
+  "devDependencies": {
+    "grunt-apidoc": "^0.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://git.prd.newit-dev.com/newitvn-tindm/restaurant"
