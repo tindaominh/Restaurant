@@ -17,9 +17,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = DB::table('customer')
-        ->join('order','order.id','=','customer.order_id')->get();
-        //var_dump($customer);
+        $customer = DB::table('customer')->get();
         return view('customer',['customer'=>$customer]);
     }
 

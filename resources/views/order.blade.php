@@ -10,7 +10,7 @@
             <th scope="col">Số lượng</th>
             <th scope="col">Ghi chú</th>
             <th scope="col">Giá</th>
-            <th scope="col"></th>
+            <th scope="col" style="text-align: center;"></th>
         </tr>
     </thead>
     @foreach($order as $getorder)
@@ -22,7 +22,7 @@
             <td scope="row">{{$getorder->so_luong}}</td>
             <td scope="row">{{$getorder->ghi_chu}}</td>
             <td scope="row">{{number_format($getorder->tong_tien)}} đ</td>
-            <td>
+            <td scope="row" style="text-align: right; padding-right: 0px;">
                 <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <a href="{{url('payment/'.$getorder->customer_id)}}" class="btn btn-info">Payment</a>

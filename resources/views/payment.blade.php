@@ -30,7 +30,7 @@
   <tbody>
     @foreach($payment as $key=>$value_order)
       <tr>
-        <td>{{($value_order->payment_id)}}</td>
+        <td>{{($value_order->id)}}</td>
         <td>{{($value_order->customer_id)}}</td>
         <td>{{($value_order->customer_soban)}}</td>
         <td>{{($value_order->customer_vitri)}}</td>

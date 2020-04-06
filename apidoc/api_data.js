@@ -58,14 +58,14 @@ define({ "api": [
             "type": "integer",
             "optional": false,
             "field": "id",
-            "description": "<p>id of customer.</p>"
+            "description": "<p><code>id</code> of customer.</p>"
           },
           {
             "group": "Success 200",
             "type": "integer",
             "optional": false,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Success 200",
@@ -132,14 +132,14 @@ define({ "api": [
             "type": "integer",
             "optional": false,
             "field": "id",
-            "description": "<p>id of customer.</p>"
+            "description": "<p><code>id</code> of customer.</p>"
           },
           {
             "group": "Success 200",
             "type": "integer",
             "optional": false,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Success 200",
@@ -215,7 +215,7 @@ define({ "api": [
             "type": "integer",
             "optional": false,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Parameter",
@@ -256,14 +256,14 @@ define({ "api": [
             "type": "integer",
             "optional": false,
             "field": "id",
-            "description": "<p>id of customer.</p>"
+            "description": "<p><code>id</code> of customer.</p>"
           },
           {
             "group": "Success 200",
             "type": "integer",
             "optional": false,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Success 200",
@@ -321,7 +321,7 @@ define({ "api": [
             "type": "integer",
             "optional": true,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Parameter",
@@ -362,14 +362,14 @@ define({ "api": [
             "type": "integer",
             "optional": false,
             "field": "id",
-            "description": "<p>id of customer.</p>"
+            "description": "<p><code>id</code> of customer.</p>"
           },
           {
             "group": "Success 200",
             "type": "integer",
             "optional": false,
             "field": "order_id",
-            "description": "<p>id of order.</p>"
+            "description": "<p><code>id</code> of order.</p>"
           },
           {
             "group": "Success 200",

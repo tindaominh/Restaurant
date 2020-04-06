@@ -14,13 +14,10 @@ class CreateTblPaymentTable extends Migration
     public function up()
     {
         Schema::create('tbl_payment', function (Blueprint $table) {
-            $table->increments('payment_id');
+            $table->increments('id');
             $table->integer('customer_id');
             $table->integer('customer_soban');
             $table->integer('customer_vitri');
-            $table->integer('menu_id');
-            // $table->string('menu_name');
-            // $table->integer('menu_soluong');
             $table->string('payment_total');
             $table->integer('payment_active');
             $table->timestamps();

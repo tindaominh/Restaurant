@@ -11,7 +11,6 @@ class payment extends Model
         'customer_id',
         'customer_soban',
         'customer_vitri',
-        'menu_id',
         'payment_total',
         'payment_active'
     ];

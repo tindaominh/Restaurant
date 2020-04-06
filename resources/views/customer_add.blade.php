@@ -10,7 +10,7 @@
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Ma order</label>
-            <input type="text" class="form-control" name="order_id" value="2" aria-describedby="emailHelp">
+            <input type="text" class="form-control" name="order_id" value="1" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Số bàn</label>

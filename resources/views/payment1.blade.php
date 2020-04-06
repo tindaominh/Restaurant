@@ -1,7 +1,6 @@
 @extends('layout')
 @section('content')
 @include('errors')
-
 <div class="pt-5 menuone">
   <h3>Danh sách Payment</h3>
 </div>
@@ -17,9 +16,9 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($payment as $key=>$value_order)
+    @foreach($payment as $value_order)
     <tr>
-      <td>{{($value_order->payment_id)}}</td>
+      <td>{{($value_order->id)}}</td>
       <td>{{($value_order->customer_id)}}</td>
       <td>{{($value_order->customer_soban)}}</td>
       <td>{{($value_order->customer_vitri)}}</td>

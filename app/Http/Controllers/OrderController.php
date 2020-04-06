@@ -33,43 +33,35 @@ class OrderController extends Controller
         return view('order_add', ['menu' => $menu]);
     }
 
-    // public function payment($id)
-    // {
-    //     $giohang = DB::table('order')->where('customer_id', $id)->get();
-    //     $customer = DB::table('customer')->where('id', $id)->first();
-    //     $total = 0;
-    //     foreach ($giohang as $key) {
-    //         $t = $key->so_luong * $key->tong_tien;
-    //         $total += $t ;
-    //     }
-    //     $data['payment_total'] = $total;
-    //     $data['customer_id' ]= $id;
-    //     $data['payment_active'] = 1;
-    //     $payment=DB::table('tbl_payment')->where('customer_id',$id)->first();
-    //     // $select_payment = DB::table('tbl_payment')->where('customer_id', $id)->where('customer_soban', $data->customer_soban)->where('customer_vitri', $data->customer_vitri)->where('payment_active', $data->payment_active)->first();
-    //     DB::table('tbl_payment')->insert($data);
-    //     var_dump($data);
-    //     return view('payment',['giohang'=>$giohang,'customer'=>$customer]);
-    // }
-
     public function payment($id)
     {
-        //$customer= DB::table('customer')->get();
-        $customer = DB::table('customer')
-        ->join('order', 'order.id', '=', 'customer.order_id')
-        ->join('tbl_menu', 'tbl_menu.id', '=', 'order.menu_id')->get();
-        $data['customer_id']=$id;
-        foreach($customer as $getcustomer)
+        $giohang = DB::table('order')->where('customer_id', $id)->get();
+        $getcustomer = DB::table('customer')->where('id', $id)->first();
+        if(empty($getcustomer->vi_tri))
         {
-            $data['customer_soban'] = $getcustomer->so_ban;
-            $data['customer_vitri'] = $getcustomer->vi_tri;
-            $data['menu_id'] = $getcustomer->menu_id;
-            $data['payment_total'] = $getcustomer->tong_tien;
-            $data['payment_active'] = 1;
+            return back()->with('alert_error', 'Chưa chọn vị trí và số bàn, vui lòng thêm customer!');
         }
-        DB::table('tbl_payment')->insert($data);
-        $payment=DB::table('tbl_payment')->get();
-        return view('payment1', ['customer' => $customer,'payment' => $payment]);
+        $total = 0;
+        foreach ($giohang as $key) {
+            $x = $key->so_luong * $key->tong_tien;
+            $total = $total + $x;
+        }
+        $data['payment_total'] = $total;
+        $data['customer_id'] = $id;
+        $data['customer_vitri'] = $getcustomer->vi_tri;
+        $data['customer_soban'] = $getcustomer->so_ban;
+        $data['payment_active'] = 1;
+        $ds_payment = DB::table('tbl_payment')->where('customer_id', $id)->get();
+        $select_payment = DB::table('tbl_payment')->where('customer_id', $id)->where('customer_soban', $data['customer_soban'])->where('customer_vitri', $data['customer_vitri'])->where('payment_active', $data['payment_active'])->first();
+        if ($select_payment) 
+        {
+            return view('payment1',['payment'=>$ds_payment]);
+        }
+        else 
+        {
+            Db::table('tbl_payment')->insert($data);
+            return view('payment1',['payment'=>$ds_payment]);
+        }
     }
 
     /**

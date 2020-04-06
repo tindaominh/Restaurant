@@ -9,7 +9,6 @@
             <th scope="col">Ma order</th>
             <th scope="col">Số bàn</th>
             <th scope="col">Vị trí</th>
-            <th scope="col">Tong tien</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -20,8 +19,7 @@
             <td>{{$getcustomer->order_id}}</td>
             <td>{{$getcustomer->so_ban}}</td>
             <td>{{$getcustomer->vi_tri}}</td>
-            <td>{{number_format($getcustomer->tong_tien * $getcustomer->so_luong)}}</td>
-            <td style="text-align: right;">
+            <td style="text-align: right; padding-right: 0px;">
                 <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <a href="{{ url('customer/view/'.$getcustomer->id) }}" class="btn btn-info">View</a>
